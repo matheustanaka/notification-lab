@@ -15,8 +15,11 @@ export class Notification {
   private _id: string;
   private props: NotificationProps;
 
-  constructor(props: Replace<NotificationProps, { createdAt?: Date }>) {
-    this._id = randomUUID();
+  constructor(
+    props: Replace<NotificationProps, { createdAt?: Date }>,
+    id?: string,
+  ) {
+    this._id = id ?? randomUUID(); // se o id existir, ele usa o id, se não usa o randomID
     this.props = {
       ...props, // copia todas as propriedades lá de cima
       createdAt: props.createdAt ?? new Date(), // se createdAt ele for informado o usuário poe a data que quer, se não ele vai usar a data atual
